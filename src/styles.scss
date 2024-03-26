@@ -1,0 +1,126 @@
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap');
+
+$main-color:#0aad0a;
+$light-color:#f0f3f2;
+$shadow: rgba(145,158,171,.2) 0px 2px 4px -1px,
+rgba(145,158,171,.14) 0px 4px 5px 0px,
+rgba(145,158,171,.12) 0px 1px 10px 0px;
+$font-family:'Encode Sans Expanded', sans-serif;
+$rating-color:#ffc908;
+$main-transition: 0.8s;
+
+
+body{
+    font-family: $font-family !important;
+}
+
+ul{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+    
+}
+.w-10{
+    width: 10%;
+}
+.text-main {
+    color: $main-color;
+}
+
+.text-main-light{
+    color: $light-color;
+}
+
+.bg-main-light{
+    background-color: $light-color;
+}
+
+.bg-main{
+    color: $main-color;
+}
+
+.font-sm{
+    font-size: 11px;
+}
+
+.rating-color
+{
+    color: $rating-color;
+}
+
+.main-btn{
+    background-color: $main-color;
+    color: $light-color;
+    border-radius: 5px;
+    border: unset;
+    cursor: pointer;
+    padding: 4px 8px;
+
+    &:disabled{
+        background-color: #0aad0a80;
+        color: #f0f3f26d;
+        cursor: not-allowed;
+    }
+
+}
+
+.product{
+
+    .main-btn{
+        transform: translateY(150%);
+        opacity: 0;
+    }
+
+    &:hover{
+        .main-btn{
+            transform: translateY(0);
+            opacity: 1;
+            transition: 1s;
+        }
+    }
+
+
+    border: 1px solid $main-color;
+    border-radius: 5px;
+    padding: 4px;
+    box-shadow: $shadow;
+    overflow: hidden;
+    position: relative;
+    
+    .heart{
+        position: absolute;
+        font-size: 35px;
+        top: 5px;   
+        right: -50px;
+        z-index: 99;
+        transition: right 1s;
+        cursor: pointer;
+    }
+
+    &:hover{
+        .heart{
+            right: 5px;
+        }
+    }
+}
+
+.cursor-pointer
+{
+    cursor: pointer;
+}
+
+.active-link{
+    color: #fff !important;
+    background-color: $main-color !important;
+    border-radius: 5px !important;
+    cursor: pointer;
+
+}
+
+

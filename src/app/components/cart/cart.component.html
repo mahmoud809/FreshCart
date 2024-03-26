@@ -1,0 +1,39 @@
+<section *ngIf="cartDetails;else msg" class="w-75 rounded mx-auto shadow bg-main-light p-3 mb-3">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="h2">Shop Cart</h1>
+        <button (click)="clearAllCart()" class="btn btn-outline-danger"> Clear cart</button>
+    </div>
+    <p class="text-main">Total price : {{cartDetails.totalCartPrice | currency : 'EGP '}} </p>
+
+    <div class="row border-bottom py-2" *ngFor="let item of cartDetails.products">
+        <div class="col-md-1">
+            <img class="w-100" [src]="item.product.imageCover" [alt]="item.product.title">
+        </div>
+        <div class="col-md-11 d-flex align-items-center justify-content-between">
+            <div>
+                <h3 class="h6">{{item.product.title}}</h3>
+                <p class="text-main mb-0">Price : {{item.price | currency : 'EGP '}}</p>
+                <button #btnRemove (click)="removeItem(item.product._id , btnRemove)" class="btn m-0 p-0 removeBtn"><i class="fas fa-trash-can text-main"></i> Remove</button>
+            </div>
+            <div>
+                <button #btn1 (click)="changeCount(item.count + 1 , item.product._id , btn1 , btn2)" class="btn-sm text-main btn border-success">+</button>
+                <span> {{item.count}} </span>
+                <button #btn2 (click)="changeCount(item.count - 1 , item.product._id , btn1 , btn2)" class="btn-sm text-main btn border-success">-</button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <button [routerLink]="['/payment' , cartDetails._id]" class="mt-2 py-0 main-btn">Online Payment <img src="./assets/images/visa-1.svg" alt="visa logo"/></button>
+</section>
+
+
+<ng-template #msg>
+    <div class="w-75 mx-auto text-center">
+        <h2>Your cart is empty....</h2>
+        <img class="w-50" src="./assets/images/preview.png" alt="empty cart">
+    </div>
+
+</ng-template>
+

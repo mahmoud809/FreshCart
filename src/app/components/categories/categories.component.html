@@ -1,0 +1,13 @@
+<section *ngIf="categoryData.length > 0" class="py-4">
+    <h2 class="text-center">All Categories</h2>
+    <div class="row g-4 justify-content-center">
+        <div *ngFor="let category of categoryData"  class="col-sm-6 col-md-4 col-lg-3 col-xl-2" [routerLink]="['/categoryDetails' , category._id]">
+            <div class="border border-success shadow p-2 cursor-pointer">
+                <img [src]="category.image" height="270" class="w-100" [title]="category.name" [alt]="category.name"/>
+                <h3 class="text-main text-center h5">{{category.name}}</h3>
+            </div>
+
+        </div>
+    </div>
+
+</section>

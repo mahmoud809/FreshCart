@@ -1,0 +1,42 @@
+<section class="py-4" *ngIf="products.length > 0 ;else MSG">
+    <h2 class="text-center">Favorites Products</h2>
+   
+    <div class="row g-4 justify-content-center">
+        <div *ngFor="let product of products" class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+
+            <div class="product h-100">
+
+                <i *ngIf="!wishlistData.includes($any(product._id))" (click)="addToFavList(product._id)" class="fa-regular fa-heart heart"></i>
+                
+                <i *ngIf="wishlistData.includes($any(product._id))" (click)="removeFromFavList(product._id)" class="fa-solid fa-heart heart text-danger"></i>
+
+                <header class="cursor-pointer" [routerLink]="['/product-details', product._id]">
+
+                    <img [src]="product.imageCover" class="w-100" [title]="product.title" [alt]="product.title"/>
+                    <h3 class="h6">{{product.title | cuttext: 3 }}</h3>
+                    <h4 class="h6 text-main">{{product.category.name}}</h4>
+
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span>{{product.price | currency:'EGP '}} </span>
+                        <span class="text-muted"> <i class="fas fa-star rating-color"></i>
+                        {{product.ratingsAverage}}
+                        </span>
+                    </div>
+                </header>
+                <footer>
+                    <button #btnAdd (click)="addProduct( product._id , btnAdd )" class="main-btn w-100 py-2"> <i class="fa-solid fa-plus "></i> Add to card </button>
+                </footer>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<ng-template #MSG>
+    <div class="w-75 mx-auto text-center">
+        <h2>Your wishlist is empty....</h2>
+        <img class="w-50" src="./assets/images/empty wishlist.png" alt="empty wishlist">
+    </div>
+
+</ng-template>

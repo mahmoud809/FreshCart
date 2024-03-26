@@ -1,0 +1,52 @@
+<section class="py-4" *ngIf="products.length > 0">
+    <h2>All Products</h2>
+    <div class="row g-4 justify-content-center">
+        <div *ngFor="let product of products | paginate: { id: 'productPaginate',
+        itemsPerPage: pageSize,
+        currentPage: curPage,
+        totalItems: total }" class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+
+            <div class="product h-100">
+
+                <i *ngIf="!wishlistData.includes($any(product._id))" (click)="addToFavList(product._id)" class="fa-regular fa-heart heart"></i>
+                
+                <i *ngIf="wishlistData.includes($any(product._id))" (click)="removeFromFavList(product._id)" class="fa-solid fa-heart heart text-danger"></i>
+
+
+                <header class="cursor-pointer" [routerLink]="['/product-details', product._id]">
+                    <img [src]="product.imageCover" class="w-100" [title]="product.title" [alt]="product.title"/>
+                    <h3 class="h6">{{product.title | cuttext: 2 }}</h3>
+                    <h4 class="h6 text-main">{{product.category.name}}</h4>
+
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span>{{product.price | currency:'EGP '}} </span>
+                        <span class="text-muted"> <i class="fas fa-star rating-color"></i>
+                        {{product.ratingsAverage}}
+                        </span>
+                    </div>
+                </header>
+                <footer>
+                    <button #btnAdd (click)="addProduct( product._id , btnAdd )" class="main-btn w-100 py-2"> <i class="fa-solid fa-plus "></i> Add to card </button>
+                </footer>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="d-flex justify-content-center align-items-center mt-4">
+        <pagination-controls  id="productPaginate"
+                      (pageChange)="pageChanged($event)"
+                      (pageBoundsCorrection)="pageChanged($event)"
+                      [maxSize]="9"
+                      [directionLinks]="true"
+                      [autoHide]="true"
+                      [responsive]="true"
+                      previousLabel="Previous"
+                      nextLabel="Next"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page">
+        </pagination-controls>
+    </div>
+</section>

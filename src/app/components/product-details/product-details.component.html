@@ -1,0 +1,28 @@
+<section class="w-75 shadow mx-auto mb-2 py-4" *ngIf="productDetails">
+    <div class="row d-flex align-items-center justify-content-center p-4">
+        <div class="col-md-3">
+            <img class="w-100 rounded-2" [src]="productDetails.imageCover" alt="">
+        
+            </div>
+
+            <div class="col-md-9">
+
+                <header>
+                   
+                    <h3 class="h6">{{productDetails.title}}</h3>
+                    <h4 class="h6 text-main">{{productDetails.category.name}}</h4>
+                    <h5 class="h6 text-muted">{{productDetails.description}}</h5>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span>{{productDetails.price | currency:'EGP '}} </span>
+                        <span class="text-muted"> <i class="fas fa-star rating-color"></i>
+                        {{productDetails.ratingsAverage}}
+                        </span>
+                    </div>
+                </header>
+                <footer>
+                    <button #btnAdd (click)="addProduct( productDetails._id , btnAdd )" class="main-btn w-100 py-2"> <i class="fa-solid fa-plus "></i> Add to card </button>
+                </footer>
+
+            </div>
+    </div>
+</section>
